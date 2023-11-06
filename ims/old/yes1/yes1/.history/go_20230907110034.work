@@ -1,0 +1,5 @@
+go 1.20
+
+use /home/user/yes1/yes1/etcd-inventory
+use /home/user/yes1/yes1/itldims
+

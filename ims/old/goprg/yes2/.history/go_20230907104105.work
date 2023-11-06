@@ -1,0 +1,6 @@
+go 1.20
+
+use (
+./home/user/goprg/yes2/ims
+./home/user/goprg/yes2/ims-server
+)

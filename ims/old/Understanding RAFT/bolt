@@ -1,0 +1,33 @@
+bolt db a local storage engine
+
+
+Bolt in itself is the storage for etcd.
+
+every etcd node has its separate storage
+
+etcd built upon BoltDB & this is where the key-value pairs are stored.
+
+BoltDB is the storage where values can be found from keys
+
+BoltDB organises data and makes finding data easier
+
+Each ETCD NODE maintains local storage & BoltDB interacts with data in local storage stored using BoltDB
+
+boltdb is:
+fast
+efficient
+reads key-values data
+storage for every server/node
+
+REQUEST TO STORE/GET DATA
+|-> ETCD
+	|-> BoltDB
+		  |-> Checks local storage where data stored using BoltDB
+	
+Bolt = NOTEBOOK
+Info written on pages
+most pages moved to cache for fast
+if cache =/= data then page checked
+fast when reading, slow when writing as where to write needs to be searched
+
+

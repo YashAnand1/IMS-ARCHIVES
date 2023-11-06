@@ -1,0 +1,49 @@
+# Understanding 'Main.go' 
+**Main.go Reference Link: [Click Here](https://github.com/Keen-And-Able/etcd-inventory/blob/sk/main.go)**
+
+### 1. 
+```
+package main
+```
+
+This is used to designate the entry point for the compiler to start executing the program from.
+
+### 2. 
+```
+	import (
+    "context"
+	"encoding/csv"
+	"encoding/json"
+	"flag"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"strings"
+
+	"github.com/tealeg/xlsx"
+	clientv3 "go.etcd.io/etcd/client/v3"
+    )
+```
+- !context: For managing and propagating request-scoped values, cancellation signals, and deadlines across API boundaries.
+- For manage and pass information across different parts of a program that are involved in handling a request. It allows you to set values, manage cancellation signals, and set deadlines, making it useful for coordinating actions in complex systems.
+
+- encoding/csv: For reading Comma-Separated Values (CSV) file, commonly used for tabular data storage.
+
+- encoding/json: For encoding and decoding JSON data.
+
+- !flag: For defining and parsing command-line flags or arguments.
+
+fmt: For formatted printing, strings and other values.
+
+log: For printing log messages to error stream through its simple logging interface. 
+
+!net/http: For building web applications and making HTTP requests through its HTTP client & server implementations.
+
+os: For operating system functionality such as file operations, environment variables & process management through its platform-independent interface.
+
+strings: For manipulating and working with strings.
+
+github.com/tealeg/xlsx: For reading and writing Microsoft Excel (XLSX) files.
+
+go.etcd.io/etcd/client/v3: For interacting with the etcd distributed key-value store.

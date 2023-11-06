@@ -1,0 +1,2 @@
+etcdctl get --prefix --rev=2 <key> //For getting the revision number 2
+

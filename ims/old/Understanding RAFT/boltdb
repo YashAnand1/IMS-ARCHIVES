@@ -1,0 +1,47 @@
+package main
+
+import (
+	"log"
+
+	"github.com/boltdb/bolt"
+)
+
+func main() {
+	db, err := bolt.Open("my.db", 0600, &bolt.Options{Timeout: 1 * time.Second})
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	...
+}
+
+package main
+
+import (
+	"log"
+
+	"github.com/boltdb/bolt"
+)
+
+func main() {
+	db, err := bolt.Open("my.db", 0600, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+}
+__________________________________________________________
+
+go mod init test.go
+go mod tidy
+go run test.go
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/user/my.db/
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+mkdir myproject
+cd myproject
+go mod init github.com/anand11yash/myproject

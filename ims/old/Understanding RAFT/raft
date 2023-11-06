@@ -1,0 +1,11 @@
+Etcd follows the CP (Consistency and Partition tolerance) aspect of the CAP theorem.
+
+Consistency means that when a change is made to the data stored in Etcd, all clients accessing the data will eventually see the same updated version. Etcd ensures that there is a strong consistency model, meaning that all read and write operations are coordinated and ordered.
+
+Partition tolerance, as mentioned earlier, refers to the system's ability to continue functioning even when there are communication failures or network partitions. Etcd is designed to handle network partitions by using a leader-based consensus algorithm called Raft.
+
+Raft ensures that even if the network gets divided into separate parts, Etcd can still maintain consistency by electing a leader for each partition and coordinating data updates within each partition.
+
+However, it's important to note that by prioritizing consistency and partition tolerance, Etcd may experience temporary unavailability (partial unavailability) during network partitions or when a majority of nodes are not available. This trade-off is made to ensure data consistency and reliability in a distributed environment.
+
+So, Etcd focuses on providing strong data consistency and handling network partitions, making it a CP system according to the CAP theorem.

@@ -1,0 +1,78 @@
+ETCD FAQ
+This code is written in Go and its main purpose is to open and read a BoltDB database file. Let's go through the code step by step to understand
+its functionality.
+
+    Importing packages:
+    The code begins by importing the necessary packages. The "fmt" package is used for formatted input/output, the "log" package is used for logging,
+    and the "go.etcd.io/bbolt" package is imported to work with BoltDB, a key-value store.
+
+    Defining the main function:
+    The code defines the main function, which is the entry point of the program.
+
+    File path:
+    A file path string is assigned to the variable filePath. It specifies the location of the BoltDB database file to be opened.
+
+    Opening the database:
+    The bbolt.Open function is used to open the database file specified by the filePath variable.
+    It takes three arguments: the file path, file mode (in this case 0666, indicating read and write permissions for the owner), and an optional options
+    parameter (set to nil in this case). If there is an error opening the database, the program logs the error message and terminates using log.Fatalf.
+
+    Defer closing the database:
+    The defer statement is used to schedule the closing of the database using the db.Close() function. This ensures that the database is properly
+    closed before the program exits, regardless of any errors that may occur later.
+
+    Reading the database:
+    The code uses the db.View function to read the contents of the database. It takes a function as an argument, which is called with a
+     transaction object (tx) that provides access to the database. The function passed to db.View is an anonymous function that takes tx as
+     a parameter and returns an error. The code is using a nested anonymous function to iterate over each key-value pair in the database.
+
+     db.View function:
+     The db.View function is called on the db database handle. It executes a read-only transaction on the database. The provided argument is a callback function, which will be called by db.View with a transaction object (tx) as its parameter.
+ 
+     tx - Transaction object:
+     The tx variable represents a transaction object, which provides a context for performing operations on the database within the callback function. It allows you to read and interact with the data in a consistent and isolated manner.
+ 
+     Callback functions:
+     A callback function is a function that is passed as an argument to another function and is called by that function at a later time. In this code, the callback functions are anonymous functions defined directly as arguments to the db.View and bucket.ForEach functions.
+ 
+     Retrieving a bucket:
+     Within the first callback function, tx.Bucket([]byte("key")) is used to retrieve a bucket named "key" from the transaction (tx). If the bucket is not found (i.e., bucket is nil), the function returns an error using fmt.Errorf.
+ 
+     Iterating over keys:
+     After retrieving the bucket, another db.View call is made within the first callback function. This time, it iterates over each key in the database using tx.ForEach. For each key, the callback function prints the name of the key using fmt.Println.
+ 
+     Iterating over key-value pairs:
+     Next, outside the nested db.View call, the code uses the retrieved bucket from step 4. It iterates over each key-value pair within the bucket using bucket.ForEach. For each pair, the callback function prints the key and value using fmt.Printf.
+ 
+     Returning nil:
+     At the end of the outer callback function, nil is returned to indicate that there were no errors during the transaction.
+ 
+ In summary, the code performs the following steps:
+ 
+     It opens a BoltDB database and executes a read-only transaction using db.View.
+     Within the transaction, it retrieves a specific bucket and checks if it exists.
+     It iterates over the keys in the database and prints their names.
+     It iterates over the key-value pairs in the retrieved bucket and prints their values.
+     Finally, it returns nil to indicate the successful completion of the transaction.
+ 
+ The purpose of this code appears to be reading and printing the names of keys in the database and the values of key-value pairs within a specific bucket.
+ 
+    Retrieving a bucket:
+    Within the first anonymous function, the code attempts to retrieve a bucket named "key" using tx.Bucket([]byte("key")). If the bucket is 
+    not found, it returns an error. Buckets in BoltDB are used to store key-value pairs.
+
+    Iterating over buckets:
+    After retrieving the "key" bucket, the code calls db.View again with a new anonymous function to iterate over each bucket in the database.
+    For each bucket found, the code prints the name of the bucket using fmt.Println.
+
+    Iterating over key-value pairs:
+    After the iteration over buckets, the code uses the bucket.ForEach function to iterate over each key-value pair within the "key" bucket.
+     The anonymous function passed to bucket.ForEach is called for each key-value pair, and it prints the key and value using fmt.Printf.
+
+    Error handling:
+    The code returns nil at the end of the outer anonymous function to indicate that there were no errors in the transaction. If there is 
+    an error during the transaction, the program logs the error message using log.Fatalf.
+
+That's the overview of what this code does. It opens the specified BoltDB database file, reads the contents, retrieves a specific bucket, 
+iterates over buckets and key-value pairs, and prints the results.
+

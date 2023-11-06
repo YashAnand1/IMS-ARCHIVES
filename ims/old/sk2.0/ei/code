@@ -1,0 +1,5 @@
+10:30 TO 1:30 - Creating commands with outputs
+12:30 TO 3:00 - Bash scripting tutorial
+03:00 TO 4:00 - Moumita Ma'am's session
+04:15 TO 5:00 - Creating custom commands like 'etcdctl get "/servers/" | grep ram | xargs {} etcdctl get {}'
+5:00 TO 6:00 - Understanding AWX
